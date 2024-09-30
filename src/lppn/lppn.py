@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+import requests
+import re
+
+def get(major:int, minor:int) -> int:
+    """
+    Returns the latest Python patch number of a given major and minor version.
+
+    :param major: Python major version
+    :param minor: Python minor version
+    :return: An integer containing the latest Python patch number
+    """
+    # Get python download page
+    s = requests.Session()
+    r = s.get('https://www.python.org/ftp/python/')
+    if r.status_code != 200:
+        exit(f'Could not connect to \'https://www.python.org/ftp/python/\'')
+    page_content = str(r.content)
+    r.close()
+
+    # Create pattern of what we want in the page
+    patch_pattern_string = f'(<a href="{major}\\.{minor}\\.\\d+/">{major}\\.{minor}\\.)(\\d+)(/</a>)'
+    patch_pattern = re.compile(patch_pattern_string)
+
+    # Parse the page for a patch and add it to a list
+    patches = []
+    results = re.findall(patch_pattern, page_content)
+    for result_tuple in results:
+        re_group_1, re_group_2, re_group_3 = result_tuple
+        patch = int(re_group_2)
+        patches.append(patch)
+    if patches == []:
+        exit(f'Could not find a suitable version for \'{major}.{minor}\'')
+
+    # Get the latest patch
+    latest_patch = max(patches)
+
+    return latest_patch
