@@ -12,11 +12,15 @@ def get(major:int, minor:int) -> int:
     :param minor: Python minor version
     :return: An integer containing the latest Python patch number
     """
+
+    # Python download URL
+    url='https://www.python.org/ftp/python/'
+
     # Get python download page
     s = requests.Session()
-    r = s.get('https://www.python.org/ftp/python/')
+    r = s.get(url)
     if r.status_code != 200:
-        exit(f'Could not connect to \'https://www.python.org/ftp/python/\'')
+        exit(f'Could not connect to \'{url}\'')
     page_content = str(r.content)
     r.close()
 
