@@ -16,7 +16,7 @@ import argparse
 from lppn import lppn
 
 def main():
-    parser = argparse.ArgumentParser(description='Prints the latest Python full version number of a given \'major.minor\' version')
+    parser = argparse.ArgumentParser(description='Prints the latest Python full version number of a given \'Major\' and \'Minor\' version ')
     parser.add_argument('--full-version', '-f', action='store_true', help='Print full version.')
     parser.add_argument('MAJOR', type=int, help='Major Python version e.g. 3')
     parser.add_argument('MINOR', type=int, help='Minor Python version e.g. 12')
