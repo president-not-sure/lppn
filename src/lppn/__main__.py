@@ -18,13 +18,13 @@ from lppn import lppn
 def main():
     parser = argparse.ArgumentParser(description='Prints the latest Python full version number of a given \'Major\' and \'Minor\' version ')
     parser.add_argument('--full-version', '-f', action='store_true', help='Print full version.')
-    parser.add_argument('MAJOR', type=int, help='Major Python version e.g. 3')
-    parser.add_argument('MINOR', type=int, help='Minor Python version e.g. 12')
+    parser.add_argument('major', type=int, help='Major Python version e.g. 3')
+    parser.add_argument('minor', type=int, help='Minor Python version e.g. 12')
     args = parser.parse_args()
 
-    patch = lppn.get(args.MAJOR, args.MINOR)
+    patch = lppn.get(args.major, args.major)
     if args.full_version:
-        print(f'{args.MAJOR}.{args.MINOR}.{patch}')
+        print(f'{args.major}.{args.major}.{patch}')
     else:
         print(patch)
 
