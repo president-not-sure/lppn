@@ -25,6 +25,8 @@ requires-python = ">=3.8"
 [project.optional-dependencies]
 dev = []
 
+[tool.setuptools_scm]
+
 [project.urls]
 Homepage = "https://github.com/president-not-sure/lppn"
 Repository = "https://github.com/president-not-sure/lppn.git"
