@@ -12,9 +12,11 @@ readme = "README.md"
 authors = [{ name = "President Not Sure", email = "144360653+president-not-sure@users.noreply.github.com" }]
 license = { file = "LICENSE" }
 classifiers = [
+    "Development Status :: 3 - Alpha",
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Intended Audience :: DevOps",
 ]
 keywords = ["get", "latest", "python", "patch", "version"]
 dependencies = ["requests"]
