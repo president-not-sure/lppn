@@ -22,9 +22,9 @@ def main():
     parser.add_argument('minor', type=int, help='Minor Python version e.g. 12')
     args = parser.parse_args()
 
-    patch = lppn.get(args.major, args.major)
+    patch = lppn.get(args.major, args.minor)
     if args.full_version:
-        print(f'{args.major}.{args.major}.{patch}')
+        print(f'{args.major}.{args.minor}.{patch}')
     else:
         print(patch)
 
