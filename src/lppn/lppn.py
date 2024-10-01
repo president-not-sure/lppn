@@ -27,7 +27,9 @@ def get(major: int, minor: int) -> int:
 
     # Create pattern of what we want in the page
     patch_pattern_string = (
-        f'(<a href="{major}\\.{minor}\\.\\d+/">{major}\\.{minor}\\.)(\\d+)(/</a>)'
+        f'(<a href="{major}\\.{minor}\\.\\d+/">{major}\\.{minor}\\.)'
+        '(\\d+)'
+        '(/</a>)'
     )
     patch_pattern = re.compile(patch_pattern_string)
 

@@ -18,7 +18,10 @@ from lppn import lppn
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Print the latest Python patch number of a given major and minor version"
+        description=(
+            "Print the latest Python patch number of a given major and minor"
+            " version"
+        )
     )
     parser.add_argument(
         "--full-version", "-f", action="store_true", help="Print full version"
