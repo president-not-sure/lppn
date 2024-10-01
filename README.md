@@ -1,6 +1,8 @@
 # lppn
+| master | dev |
+| :----: | :-: |
+| [![CI](https://github.com/president-not-sure/lppn/actions/workflows/CI.yaml/badge.svg?branch=master)](https://github.com/president-not-sure/lppn/actions/workflows/CD.yaml) | [![CI](https://github.com/president-not-sure/lppn/actions/workflows/CI.yaml/badge.svg?branch=dev)](https://github.com/president-not-sure/lppn/actions/workflows/CD.yaml) |
 
-## Description
 lppn, or Latest Python Patch Number, parses the Python FTP download page for the latest Python patch number of a given major and minor version. It can be used as a cli command or imported as a library. This was developped as a way to atomate the download the most recent python of an older but still supported version.
 
 ## Install
