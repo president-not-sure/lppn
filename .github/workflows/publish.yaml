@@ -1,0 +1,41 @@
+---
+  name: Publish to Pypi
+  on:
+    push:
+    workflow_dispatch:
+  
+  env:
+    DEBIAN_FRONTEND: noninteractive
+  
+  jobs:
+    publish:
+      name: Publish to Pypi
+      runs-on: ubuntu-latest
+      continue-on-error: false
+      timeout-minutes: 5
+      permissions:
+        contents: read
+  
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+  
+        - name: Install dependencies
+          run: |
+            apt-get --yes update
+            apt-get --yes install python3-full
+  
+        - name: Prepare venv
+          run: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install --upgrade build twine
+  
+        - name: Build
+          run: |
+            python -m build
+  
+        - name: Publish
+          run: |
+            python -m twine upload --repository testpypi dist/*
