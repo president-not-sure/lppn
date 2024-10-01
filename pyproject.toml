@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lppn"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Print the latest Python patch number of a given major and minor version"
 readme = "README.md"
 authors = [{ name = "President Not Sure", email = "144360653+president-not-sure@users.noreply.github.com" }]
