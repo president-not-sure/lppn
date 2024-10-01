@@ -32,6 +32,3 @@ Issues = "https://github.com/president-not-sure/lppn/issues"
 
 [project.scripts]
 lppn = "lppn.__main__:main"
-
-[tool.setuptools_scm]
-version_file = "lppn/_version.py"
