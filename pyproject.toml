@@ -19,8 +19,8 @@ classifiers = [
     "Intended Audience :: DevOps",
 ]
 keywords = ["get", "latest", "python", "patch", "version"]
-dependencies = ["requests"]
-requires-python = ">=3.6"
+dependencies = ["requests >= 2.32.3"]
+requires-python = ">=3.8"
 
 [project.optional-dependencies]
 dev = []
