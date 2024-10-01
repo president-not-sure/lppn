@@ -2,6 +2,9 @@
 name: Publish to Pypi
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 env:
   DEBIAN_FRONTEND: noninteractive
