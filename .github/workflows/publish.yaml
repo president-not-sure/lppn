@@ -1,42 +1,45 @@
 ---
-  name: Publish to Pypi
-  on:
-    push:
-    workflow_dispatch:
+name: Publish to Pypi
+on:
+  workflow_dispatch:
 
-  env:
-    DEBIAN_FRONTEND: noninteractive
+env:
+  DEBIAN_FRONTEND: noninteractive
 
-  jobs:
-    publish:
-      name: Publish to Pypi
-      runs-on: ubuntu-latest
-      continue-on-error: false
-      timeout-minutes: 5
-      permissions:
-        contents: read
+jobs:
+  publish:
+    name: Publish to Pypi
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
 
-        - name: Install dependencies
-          run: |
-            sudo apt-get --yes update
-            sudo apt-get --yes install python3-full
+      - name: Install dependencies
+        run: |
+          python3 -m venv venv
+          . venv/bin/activate
+          echo "PATH=$PATH" >> $GITHUB_ENV
+          pip install --upgrade build
 
-        - name: Prepare venv
-          run: |
-            python3 -m venv venv
-            . venv/bin/activate
-            echo PATH=$PATH >> $GITHUB_ENV
-            pip install --upgrade pip
-            pip install --upgrade build twine
+      - name: Build
+        run: |
+          python -m build
 
-        - name: Build
-          run: |
-            python -m build
+      - name: Publish to test PyPI
+        if: github.ref_name != 'master'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
 
-        - name: Publish
-          run: |
-            python -m twine upload --repository testpypi dist/*
+      - name: Publish to PyPI
+        if: github.ref_name == 'master'
+        uses: pypa/gh-action-pypi-publish@release/v1
