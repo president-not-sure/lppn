@@ -22,8 +22,8 @@
   
         - name: Install dependencies
           run: |
-            apt-get --yes update
-            apt-get --yes install python3-full
+            sudo apt-get --yes update
+            sudo apt-get --yes install python3-full
   
         - name: Prepare venv
           run: |
