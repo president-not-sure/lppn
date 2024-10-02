@@ -1,22 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-
-import os
-import sys
-
-# https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/#running-a-command-line-interface-from-source-with-src-layout
-if not __package__:
-    # Make CLI runnable from source tree with
-    #    python src/package
-    package_source_path = os.path.dirname(os.path.dirname(__file__))
-    sys.path.insert(0, package_source_path)
-
 import argparse
 import lppn
 
-
-def main():
+def parse():
     parser = argparse.ArgumentParser(
         description=(
             "Print the latest Python patch number of a given major and minor"
@@ -35,7 +23,3 @@ def main():
         print(f"{args.major}.{args.minor}.{patch}")
     else:
         print(patch)
-
-
-if __name__ == "__main__":
-    main()

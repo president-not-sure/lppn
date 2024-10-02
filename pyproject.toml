@@ -33,4 +33,4 @@ Repository = "https://github.com/president-not-sure/lppn.git"
 Issues = "https://github.com/president-not-sure/lppn/issues"
 
 [project.scripts]
-lppn = "lppn.__main__:main"
+lppn = "lppn.cli:parse"
