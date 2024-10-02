@@ -13,7 +13,7 @@ if not __package__:
     sys.path.insert(0, package_source_path)
 
 import argparse
-from lppn import lppn
+import lppn
 
 
 def main():
