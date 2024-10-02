@@ -21,7 +21,7 @@ def get(major: int, minor: int) -> int:
     s = requests.Session()
     r = s.get(url)
     if r.status_code != 200:
-        exit(f"Could not connect to '{url}'")
+        raise ConnectionError(f"'{url}' status code: {r.status_code}")
     page_content = str(r.content)
     r.close()
 
@@ -41,7 +41,9 @@ def get(major: int, minor: int) -> int:
         patch = int(re_group_2)
         patches.append(patch)
     if patches == []:
-        exit(f"Could not find a suitable version for '{major}.{minor}'")
+        raise RuntimeError(
+            f"Could not find a suitable version for '{major}.{minor}'"
+        )
 
     # Get the latest patch
     latest_patch = max(patches)
