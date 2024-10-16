@@ -32,8 +32,9 @@ class TestLppnGetMethod(unittest.TestCase):
         # known and valid latest patch number
         self.latest_patch = 7
 
-    @mock.patch("requests.sessions.Session.get", return_value=MockResponse(200))
+    @mock.patch("requests.sessions.Session.get")
     def test_valid_str_input(self, mock_session_get):
+        mock.return_value = MockResponse(200)
         try:
             patch = lppn.get(str(self.major), str(self.minor))
         except:
