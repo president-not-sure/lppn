@@ -87,8 +87,9 @@ class TestLppnGetMethod(unittest.TestCase):
             patch = lppn.get(1000000, 2000000)
         mock_session_get.assert_called_once()
 
-    @mock.patch("requests.sessions.Session.get", return_value=MockResponse(404))
+    @mock.patch("requests.sessions.Session.get")
     def test_connection_error(self, mock_session_get):
+        mock.return_value = MockResponse(404)
         with self.assertRaises(ConnectionError):
             patch = lppn.get(self.major, self.minor)
         mock_session_get.assert_called_once()
