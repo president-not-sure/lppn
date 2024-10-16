@@ -50,14 +50,14 @@ class TestLppnGetMethod(unittest.TestCase):
     def test_invalid_input_type(self, mock_session_get):
         with self.assertRaises(TypeError):
             lppn.get()
-        with self.assertRaises(TypeError):
-            lppn.get("abc", "def")
-        with self.assertRaises(TypeError):
-            lppn.get(3.1415, 2.71828)
         mock_session_get.assert_not_called()
 
     @patch("requests.sessions.Session.get", return_value=MockResponse(200))
     def test_invalid_input_value(self, mock_session_get):
+        with self.assertRaises(ValueError):
+            lppn.get("abc", "def")
+        with self.assertRaises(ValueError):
+            lppn.get(3.1415, 2.71828)
         with self.assertRaises(ValueError):
             lppn.get(-self.major, -self.minor)
         mock_session_get.assert_not_called()
