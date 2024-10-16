@@ -21,7 +21,7 @@ class TestCli(unittest.TestCase):
     @patch("lppn.get")
     def test_print_patch(self, mock_lppn_get):
         mock_lppn_get.return_value = self.latest_patch
-        sys.argv = ["lppn", str(self.major), str(self.minor)]
+        sys.argv = ["lppn", "--get", str(self.major), str(self.minor)]
         with redirect_stdout(io.StringIO()) as f:
             cli.parse()
         s = f.getvalue()
@@ -32,7 +32,13 @@ class TestCli(unittest.TestCase):
     @patch("lppn.get")
     def test_print_full_version(self, mock_lppn_get):
         mock_lppn_get.return_value = self.latest_patch
-        sys.argv = ["lppn", "--full-version", str(self.major), str(self.minor)]
+        sys.argv = [
+            "lppn",
+            "--full-version",
+            "--get",
+            str(self.major),
+            str(self.minor),
+        ]
         with redirect_stdout(io.StringIO()) as f:
             cli.parse()
         s = f.getvalue()

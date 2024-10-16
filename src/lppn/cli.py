@@ -3,6 +3,7 @@
 
 import argparse
 import lppn
+import sys
 
 
 def parse():
@@ -13,14 +14,35 @@ def parse():
         )
     )
     parser.add_argument(
-        "-f", "--full-version", action="store_true", help="Print full version"
+        "-v", "--version", action="store_true", help="Print lppn version"
     )
-    parser.add_argument("major", type=int, help="Major Python version e.g. 3")
-    parser.add_argument("minor", type=int, help="Minor Python version e.g. 12")
+    parser.add_argument(
+        "-f",
+        "--full-version",
+        action="store_true",
+        help="Print full python version",
+    )
+    parser.add_argument(
+        "-g",
+        "--get",
+        type=int,
+        nargs=2,
+        metavar=("MAJOR", "MINOR"),
+        help="Major and minor python version e.g. 3 12",
+    )
     args = parser.parse_args()
 
-    patch = lppn.get(args.major, args.minor)
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit(0)
+
+    if args.version:
+        print(lppn.version)
+        sys.exit(0)
+
+    major, minor = args.get
+    patch = lppn.get(major, minor)
     if args.full_version:
-        print(f"{args.major}.{args.minor}.{patch}")
+        print(f"{major}.{minor}.{patch}")
     else:
         print(patch)

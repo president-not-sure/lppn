@@ -20,22 +20,21 @@ major = 3
 minor = 12
 patch = lppn.get(major, minor)
 
-print(f'{major}.{minor}.{patch}')
+print(f"{major}.{minor}.{patch}")
 ```
 
 ## Usage (cli)
 ```shell
 $ lppn -h
-usage: lppn [-h] [--full-version] major minor
+usage: lppn [-h] [-v] [-f] [-g MAJOR MINOR]
 
-Prints the latest Python patch number of a given major and minor version
-
-positional arguments:
-  major               Major Python version e.g. 3
-  minor               Minor Python version e.g. 12
+Print the latest Python patch number of a given major and minor version
 
 options:
-  -h, --help          show this help message and exit
-  --full-version, -f  Print full version.
+  -h, --help            show this help message and exit
+  -v, --version         Print lppn version
+  -f, --full-version    Print full python version
+  -g MAJOR MINOR, --get MAJOR MINOR
+                        Major and minor python version e.g. 3 12
 ```
 
