@@ -13,7 +13,7 @@ def parse():
         )
     )
     parser.add_argument(
-        "--full-version", "-f", action="store_true", help="Print full version"
+        "-f", "--full-version", action="store_true", help="Print full version"
     )
     parser.add_argument("major", type=int, help="Major Python version e.g. 3")
     parser.add_argument("minor", type=int, help="Minor Python version e.g. 12")
