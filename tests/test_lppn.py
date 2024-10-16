@@ -66,9 +66,8 @@ class TestLppnGetMethod(unittest.TestCase):
             lppn.get(-self.major, -self.minor)
         mock_session_get.assert_not_called()
 
-    @mock.patch("requests.sessions.Session.get")
+    @mock.patch("requests.sessions.Session.get", return_value=MockResponse(200))
     def test_invalid_input_not_found(self, mock_session_get):
-        mock.return_value = MockResponse(200)
         with self.assertRaises(RuntimeError):
             lppn.get(1000000, 2000000)
         mock_session_get.assert_called_once()
