@@ -35,14 +35,7 @@ class TestLppnGetMethod(unittest.TestCase):
     @mock.patch("requests.sessions.Session.get")
     def test_valid_str_input(self, mock_session_get):
         mock.return_value = MockResponse(200)
-        try:
-            patch = lppn.get(str(self.major), str(self.minor))
-        except:
-            self.fail(
-                f"'lppn.get({self.major}, {self.minor})' "
-                "failed with valid inputs"
-            )
-
+        patch = lppn.get(str(self.major), str(self.minor))
         mock_session_get.assert_called_once()
         self.assertIsInstance(type(patch), type(int))
         self.assertEqual(patch, self.latest_patch)
@@ -50,14 +43,7 @@ class TestLppnGetMethod(unittest.TestCase):
     @mock.patch("requests.sessions.Session.get")
     def test_valid_int_input(self, mock_session_get):
         mock.return_value = MockResponse(200)
-        try:
-            patch = lppn.get(self.major, self.minor)
-        except:
-            self.fail(
-                "'lppn.get({self.major}, {self.minor})'"
-                "failed with valid inputs"
-            )
-
+        patch = lppn.get(self.major, self.minor)
         mock_session_get.assert_called_once()
         self.assertIsInstance(type(patch), type(int))
         self.assertEqual(patch, self.latest_patch)
