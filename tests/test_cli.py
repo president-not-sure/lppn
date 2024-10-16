@@ -4,7 +4,7 @@
 import unittest
 import sys
 import io
-from unittest import mock
+from unittest.mock import patch
 from contextlib import redirect_stdout
 import lppn.cli as cli
 
@@ -18,7 +18,7 @@ class TestCli(unittest.TestCase):
         # known and valid latest patch number
         self.latest_patch = 7
 
-    @mock.patch("lppn.get")
+    @patch("lppn.get")
     def test_print_patch(self, mock_lppn_get):
         mock_lppn_get.return_value = self.latest_patch
         sys.argv = ["lppn", str(self.major), str(self.minor)]
@@ -29,7 +29,7 @@ class TestCli(unittest.TestCase):
         self.assertIsInstance(type(int(s)), type(int))
         self.assertEqual(str(s), f"{self.latest_patch}\n")
 
-    @mock.patch("lppn.get")
+    @patch("lppn.get")
     def test_print_full_version(self, mock_lppn_get):
         mock_lppn_get.return_value = self.latest_patch
         sys.argv = ["lppn", "--full-version", str(self.major), str(self.minor)]
