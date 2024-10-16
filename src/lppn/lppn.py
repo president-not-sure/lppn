@@ -14,6 +14,22 @@ def get(major: int, minor: int) -> int:
     :return: An integer containing the latest Python patch number
     """
 
+    # Check if able to cast into int
+    int(major)
+    int(minor)
+
+    # Check if float
+    if not (float(major).is_integer() and float(minor).is_integer()):
+        raise ValueError("Input must be integer")
+
+    # Cast into int
+    major = int(major)
+    minor = int(minor)
+
+    # Check if negative
+    if major < 0 or minor < 0:
+        raise ValueError("Input must be positive")
+
     # Python download URL
     url = "https://www.python.org/ftp/python/"
 
@@ -21,15 +37,15 @@ def get(major: int, minor: int) -> int:
     s = requests.Session()
     r = s.get(url)
     if r.status_code != 200:
-        exit(f"Could not connect to '{url}'")
+        raise ConnectionError(f"'{url}' status code: {r.status_code}")
     page_content = str(r.content)
     r.close()
 
     # Create pattern of what we want in the page
     patch_pattern_string = (
         f'(<a href="{major}\\.{minor}\\.\\d+/">{major}\\.{minor}\\.)'
-        '(\\d+)'
-        '(/</a>)'
+        "(\\d+)"
+        "(/</a>)"
     )
     patch_pattern = re.compile(patch_pattern_string)
 
@@ -41,7 +57,9 @@ def get(major: int, minor: int) -> int:
         patch = int(re_group_2)
         patches.append(patch)
     if patches == []:
-        exit(f"Could not find a suitable version for '{major}.{minor}'")
+        raise RuntimeError(
+            f"Could not find a suitable version for '{major}.{minor}'"
+        )
 
     # Get the latest patch
     latest_patch = max(patches)

@@ -38,12 +38,16 @@ jobs:
 
       - name: Style guide enforcement
         run: |
-          flake8 --verbose
+          flake8 --verbose src tests
+
+      - name: Unit tests
+        run: |
+          python -m unittest --verbose
 
       - name: Build and install lppn
         run: |
           pip install .
 
-      - name: Test lppn
+      - name: lppn version
         run: |
-          lppn -h
+          lppn --version
