@@ -19,7 +19,7 @@ def get(major: int, minor: int) -> int:
     if not type(minor) is int:
         raise TypeError(f"'{minor}' not an integer")
     if major < 0 or minor < 0:
-        raise ValueError(f"Input must be positive")
+        raise ValueError("Input must be positive")
 
     # Python download URL
     url = "https://www.python.org/ftp/python/"
