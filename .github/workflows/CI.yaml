@@ -48,6 +48,6 @@ jobs:
         run: |
           pip install .
 
-      - name: Display lppn help
+      - name: lppn version
         run: |
-          lppn -h
+          lppn --version
