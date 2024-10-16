@@ -14,13 +14,13 @@ def parse():
         )
     )
     parser.add_argument(
+        "-v", "--version", action="store_true", help="Print lppn version"
+    )
+    parser.add_argument(
         "-f",
         "--full-version",
         action="store_true",
         help="Print full python version",
-    )
-    parser.add_argument(
-        "-v", "--version", action="store_true", help="Print lppn version"
     )
     parser.add_argument(
         "-g",
