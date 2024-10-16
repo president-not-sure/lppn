@@ -40,9 +40,8 @@ class TestLppnGetMethod(unittest.TestCase):
         self.assertIsInstance(type(patch), type(int))
         self.assertEqual(patch, self.latest_patch)
 
-    @mock.patch("requests.sessions.Session.get")
+    @mock.patch("requests.sessions.Session.get", return_value=MockResponse(200))
     def test_valid_int_input(self, mock_session_get):
-        mock.return_value = MockResponse(200)
         patch = lppn.get(self.major, self.minor)
         mock_session_get.assert_called_once()
         self.assertIsInstance(type(patch), type(int))
