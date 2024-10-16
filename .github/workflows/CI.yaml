@@ -36,6 +36,14 @@ jobs:
           pip --version
           flake8 --version
 
+      - name: Build and install lppn
+        run: |
+          pip install .
+          
+      - name: lppn version
+        run: |
+          lppn --version
+
       - name: Style guide enforcement
         run: |
           flake8 --verbose src tests
@@ -43,11 +51,3 @@ jobs:
       - name: Unit tests
         run: |
           python -m unittest --verbose
-
-      - name: Build and install lppn
-        run: |
-          pip install .
-
-      - name: lppn version
-        run: |
-          lppn --version
