@@ -66,32 +66,32 @@ class TestLppnGetMethod(unittest.TestCase):
     def test_invalid_input_type(self, mock_session_get):
         mock.return_value = MockResponse(200)
         with self.assertRaises(TypeError):
-            patch = lppn.get()
+            lppn.get()
         with self.assertRaises(TypeError):
-            patch = lppn.get("abc", "def")
+            lppn.get("abc", "def")
         with self.assertRaises(TypeError):
-            patch = lppn.get(3.1415, 2.71828)
+            lppn.get(3.1415, 2.71828)
         mock_session_get.assert_not_called()
 
     @mock.patch("requests.sessions.Session.get")
     def test_invalid_input_value(self, mock_session_get):
         mock.return_value = MockResponse(200)
         with self.assertRaises(ValueError):
-            patch = lppn.get(-self.major, -self.minor)
+            lppn.get(-self.major, -self.minor)
         mock_session_get.assert_not_called()
 
     @mock.patch("requests.sessions.Session.get")
     def test_invalid_input_not_found(self, mock_session_get):
         mock.return_value = MockResponse(200)
         with self.assertRaises(RuntimeError):
-            patch = lppn.get(1000000, 2000000)
+            lppn.get(1000000, 2000000)
         mock_session_get.assert_called_once()
 
     @mock.patch("requests.sessions.Session.get")
     def test_connection_error(self, mock_session_get):
         mock.return_value = MockResponse(404)
         with self.assertRaises(ConnectionError):
-            patch = lppn.get(self.major, self.minor)
+            lppn.get(self.major, self.minor)
         mock_session_get.assert_called_once()
 
 
