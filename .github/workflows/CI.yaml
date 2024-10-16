@@ -38,7 +38,7 @@ jobs:
 
       - name: Style guide enforcement
         run: |
-          flake8 --verbose
+          flake8 --verbose src tests
 
       - name: Build and install lppn
         run: |

@@ -4,6 +4,7 @@
 import argparse
 import lppn
 
+
 def parse():
     parser = argparse.ArgumentParser(
         description=(
