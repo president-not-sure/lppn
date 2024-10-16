@@ -14,10 +14,19 @@ def get(major: int, minor: int) -> int:
     :return: An integer containing the latest Python patch number
     """
 
-    if not type(major) is int:
-        raise TypeError(f"'{major}' not an integer")
-    if not type(minor) is int:
-        raise TypeError(f"'{minor}' not an integer")
+    # Check if able to cast into int
+    int(major)
+    int(minor)
+
+    # Check if float
+    if not (float(major).is_integer() and float(minor).is_integer()):
+        raise ValueError("Input must be integer")
+
+    # Cast into int
+    major = int(major)
+    minor = int(minor)
+
+    # Check if negative
     if major < 0 or minor < 0:
         raise ValueError("Input must be positive")
 
