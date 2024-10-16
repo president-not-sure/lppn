@@ -26,6 +26,7 @@ requires-python = ">=3.8"
 dev = []
 
 [tool.setuptools_scm]
+version_file = "src/lppn/_version.py"
 
 [project.urls]
 Homepage = "https://github.com/president-not-sure/lppn"
